@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digit clock</title>
+    <style>
+      body {
+        font-family: arial;
+        background: #181818;
+        text-align: center;
+      }
+
+      #clock {
+        width: 30%;
+        margin: auto;
+        background: #f2f2f2;
+        padding: 20px 40px;
+        color: #6666ff;
+        border-radius: 5px;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="clock" onload="currentTime()"></div>
+    <script>
+      function currentTime() {
+        let date = new Date();
+
+        let hour = date.getHours();
+
+        let min = date.getMinutes();
+
+        let sec = date.getSeconds();
+
+        let session = "AM";
+
+        if (hour === 0) {
+          hour = 12;
+        }
+
+        if (hour > 12) {
+          hour = hour - 12;
+
+          session = "PM";
+        }
+
+        hour = hour < 10 ? "0" + hour : hour;
+
+        min = min < 10 ? "0" + min : min;
+
+        sec = sec < 10 ? "0" + sec : sec;
+
+        let time = hour + ":" + min + ":" + sec + " " + session;
+
+        document.getElementById("clock").innerText = time;
+
+        let t = setTimeout(function () {
+          currentTime();
+        }, 1000);
+      }
+
+      currentTime();
+    </script>
+  </body>
+</html>
